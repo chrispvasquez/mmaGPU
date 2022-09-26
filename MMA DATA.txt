@@ -1,0 +1,171 @@
+MMA
+#############################################################
+
+MMA Analysis: Estimated Mediation Effects Using GLM
+For Predictor/Moderator at pred
+$total.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+ 0.021 -0.048  0.054  0.057 -0.153 -0.012 -0.084 -0.011 -0.011  0.366  0.000
+
+$direct.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+-0.010  0.216  0.434  1.066 -0.635  0.507 -0.076 -0.091 -0.091  0.619  1.000
+
+$indirect.effect
+       y1.all y1.steroids
+est     0.031       0.031
+mean   -0.264      -0.264
+sd      0.487       0.487
+upbd    0.691       0.691
+lwbd   -1.219      -1.219
+upbd_q  0.063       0.063
+lwbd_q -0.591      -0.591
+upbd_b  0.081       0.081
+lwbd_b  0.081       0.081
+p_norm  0.588       0.588
+p_quan  1.000       1.000
+
+
+
+
+
+MMA Analysis: Estimated Mediation Effects Using GLM
+For Predictor/Moderator at pred
+$total.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+-1.083 -0.922  0.337 -0.263 -1.582 -0.696 -1.148 -1.160 -1.160  0.006  0.000
+
+$direct.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+-1.062 -0.854  0.254 -0.357 -1.351 -0.684 -1.024 -1.033 -1.033  0.001  0.000
+
+$indirect.effect
+       y1.all y1.hos.cat
+est    -0.021     -0.050
+mean   -0.068     -0.080
+sd      0.083      0.092
+upbd    0.094      0.100
+lwbd   -0.231     -0.260
+upbd_q -0.013     -0.018
+lwbd_q -0.124     -0.142
+upbd_b -0.127     -0.127
+lwbd_b -0.145     -0.145
+p_norm  0.411      0.384
+p_quan  0.000      0.000
+
+
+
+
+
+
+
+MMAGPU
+#############################################################
+
+MMA Analysis: Estimated Mediation Effects Using GLM
+For Predictor/Moderator at pred
+$total.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+-0.099  0.017     NA     NA     NA  0.017  0.017   -Inf    Inf     NA     NA
+
+$direct.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+-0.089  0.001  0.009  0.019 -0.017  0.007 -0.005   -Inf    Inf  0.924  1.000
+
+$indirect.effect
+       y1.all y1.steroids
+est    -0.010      -0.010
+mean    0.022       0.022
+sd         NA          NA
+upbd       NA          NA
+lwbd       NA          NA
+upbd_q  0.022       0.022
+lwbd_q  0.022       0.022
+upbd_b   -Inf        -Inf
+lwbd_b    Inf         Inf
+p_norm     NA          NA
+p_quan     NA          NA
+
+
+
+MMA Analysis: Estimated Mediation Effects Using GLM
+For Predictor/Moderator at pred
+$total.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+-1.053 -2.191  1.540  0.828 -5.209 -1.156 -3.225 -1.102 -1.102  0.155  0.000
+
+$direct.effect
+   est   mean     sd   upbd   lwbd upbd_q lwbd_q upbd_b lwbd_b p_norm p_quan
+-0.955 -2.140  1.360  0.525 -4.806 -1.227 -3.054 -1.179 -1.179  0.116  0.000
+
+$indirect.effect
+       y1.all y1.hos.cat
+est    -0.097     -0.145
+mean   -0.051     -0.111
+sd      0.180      0.258
+upbd    0.303      0.396
+lwbd   -0.404     -0.617
+upbd_q  0.071      0.063
+lwbd_q -0.172     -0.284
+upbd_b  0.077      0.077
+lwbd_b  0.072      0.072
+p_norm  0.779      0.668
+p_quan  1.000      1.000
+
+
+
+
+
+
+
+
+
+git clone --recursive https://github.com/microsoft/LightGBM
+cd LightGBM
+mkdir build
+cd build
+cmake -A x64 -DUSE_GPU=1 -DBOOST_ROOT=C:/local/boost_1_80_0_b1 -DBOOST_LIBRARYDIR=C:/local/boost_1_80_0_b1/lib64-msvc-14.3 ..
+Rscript build_r.R --use-gpu --boost-include-dir="C:/local/boost_1_80_0_b1" --boost-librarydir="C:/local/boost_1_80_0_b1/lib64-msvc-14.3"
+
+##Rscript build_r.R --use-gpu --boost-librarydir=C:/local/boost_1_80_0_b1/lib64-msvc-14.3
+
+
+
+
+
+#################################################################################################################################################################################
+
+
+#binary predictor (linear & nonlinear)
+#binary y
+
+// LINEAR
+MMA: 0.33
+MMAGPU: 0.31
+
+// NONLINEAR
+MMA: 6.99
+MMAGPU: 1.31
+
+
+
+
+#continuous y
+
+// LINEAR
+MMA: 16.14
+MMAGPU: 16.13
+
+// NONLINEAR
+MMA: 28.99
+MMAGPU: 4.52
+
+
+
+
+##Surv class outcome (survival analysis)
+
+// LINEAR & NONLINEAR
+
+MMA: 2.92
+MMAGPU: 3.05

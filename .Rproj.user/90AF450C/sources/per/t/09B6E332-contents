@@ -1,0 +1,49 @@
+library(mmaGPU)
+data("weight_behavior")
+
+# binary predictor
+# binary y
+x=weight_behavior[,c(2,4:14)]
+pred=weight_behavior[,3]
+y=weight_behavior[,15]
+temp.b.b.glm<-mma(x,y,pred=pred,contmed=c(7:9,11:12),binmed=c(6,10),binref=c(1,1),
+                   catmed=5,catref=1,predref="M",alpha=0.4,alpha2=0.4,n=2,n2=2)
+temp.b.b.mart<-mma(x,y,pred=pred,contmed=c(7:9,11:12),binmed=c(6,10),binref=c(1,1),
+                   catmed=5,catref=1,predref="M",alpha=0.4,alpha2=0.4,nonlinear=TRUE,n=2,n2=5)
+
+
+# #continuous y
+x=weight_behavior[,c(2,4:14)]
+pred=weight_behavior[,3]
+y=data.frame(weight_behavior[,1])
+colnames(y)="bmi"
+temp.b.c.glm<-mma(x,y,pred=pred,mediator=5:12,jointm=list(n=1,j1=7:9),
+                  predref="M",alpha=0.4,alpha2=0.4,n2=20)
+temp.b.c.mart<-mma(x,y,pred=pred,mediator=5:12,jointm=list(n=1,j1=7:9),
+                   predref="M",alpha=0.4,alpha2=0.4,
+                   n=2,nonlinear=TRUE,n2=20)
+
+
+##Surv class outcome (survival analysis)
+data(cgd1) #a dataset in the survival package
+x=cgd1[,c(4:5,7:12)]
+pred=cgd1[,6]
+status<-ifelse(is.na(cgd1$etime1),0,1)
+y=Surv(cgd1$futime,status)
+
+#for continuous predictor
+temp.cox.contx<-mma(x,y,pred=pred,mediator=1:ncol(x),
+                    alpha=0.5,alpha2=0.5,n=1,n2=2,type="lp")
+
+temp.surv.mart.contx<-mma(x,y,pred=pred,mediator=1:ncol(x),
+                          alpha=0.5,alpha2=0.5,nonlinear=TRUE,n2=2)
+
+summary(temp.cox.contx)
+
+#for binary predictor
+x=cgd1[,c(5:12)]
+pred=cgd1[,4]
+temp.cox.binx<-mma(x,y,pred=pred,mediator=1:ncol(x),
+                   alpha=0.4,alpha2=0.4,n=1,n2=2,type="lp")
+summary(temp.cox.binx)
+

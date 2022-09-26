@@ -1,0 +1,6 @@
+while(full.model[[j]]$n.trees-best.iter1[j]<30){
+  full.model[[j]]<-suppressWarnings(gbm.more(full.model[[j]], 100))
+  best.iter1[j]<-suppressWarnings(gbm.perf(full.model[[j]],
+                                           plot.it=FALSE,
+                                           method="OOB"))}}
+

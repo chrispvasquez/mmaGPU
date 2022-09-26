@@ -1,0 +1,12 @@
+if(distn[j] == "bernoulli")
+  distn[j] <- "binary"
+else if (distn[j] == "gaussian")
+  distn[j] <- "mean_squared_error"
+
+if (distn[j] == "binary" || distn[j] == "mean_squared_error"){
+  # LightGBM Computational Code Here!
+}
+else{
+  # GBM Computational Code Here!
+}
+
